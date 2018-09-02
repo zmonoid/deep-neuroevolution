@@ -227,7 +227,7 @@ def run_worker(master_redis_cfg, relay_redis_cfg, noise, *, min_task_runtime=.2)
         if rs.rand() < config.eval_prob:
             # Evaluation: noiseless weights and noiseless actions
             policy.set_trainable_flat(task_data.params)
-            eval_rews, eval_length = policy.rollout(env)  # eval rollouts don't obey task_data.timestep_limit
+            eval_rews, eval_length, _ = policy.rollout(env)  # eval rollouts don't obey task_data.timestep_limit
             eval_return = eval_rews.sum()
             logger.info('Eval result: task={} return={:.3f} length={}'.format(task_id, eval_return, eval_length))
             worker.push_result(task_id, Result(

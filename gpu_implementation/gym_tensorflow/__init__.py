@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from .tf_env import GymEnv
+from .tf_env import GymEnv, DoomEnv
 from.import atari, maze
 from .wrappers import StackFramesWrapper
 
@@ -11,6 +11,8 @@ def make(game, batch_size, *args, **kwargs):
         return StackFramesWrapper(atari.AtariEnv(game, batch_size, *args, **kwargs))
     if game.startswith('gym.'):
         return GymEnv(game[4:], batch_size, *args, **kwargs)
+    if game.startswith('doom'):
+        return DoomEnv(game, batch_size)
     raise NotImplementedError(game)
 
 

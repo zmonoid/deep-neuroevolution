@@ -30,7 +30,7 @@ class AtariEnv(TensorFlowEnv):
         self.color_pallete = color_pallete
         self.frameskip = frameskip
 
-        rom = os.path.join(os.path.dirname(__file__), '..', 'atari-py/atari_py/atari_roms/{}.bin'.format(game))
+        rom = os.path.join(os.path.dirname(__file__), '.', 'atari-py/atari_py/atari_roms/{}.bin'.format(game))
         with tf.variable_scope(name, default_name='AtariInstance'):
             self.instances = gym_tensorflow_module.atari_make(batch_size=batch_size, game=rom)
 

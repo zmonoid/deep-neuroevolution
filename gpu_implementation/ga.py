@@ -111,7 +111,7 @@ def main(**exp):
     all_tstart = time.time()
     def make_env(b):
         return gym_tensorflow.make(game=exp["game"], batch_size=b)
-    worker = ConcurrentWorkers(make_env, Model, batch_size=64)
+    worker = ConcurrentWorkers(make_env, Model, batch_size=15)
     with WorkerSession(worker) as sess:
         noise = SharedNoiseTable()
         rs = np.random.RandomState()

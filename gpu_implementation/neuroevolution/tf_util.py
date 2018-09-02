@@ -32,7 +32,8 @@ class WorkerSession(object):
     def __init__(self, worker):
         self._worker = worker
     def __enter__(self, *args, **kwargs):
-        self._sess = tf.Session(*args, **kwargs)
+        config = tf.ConfigProto(allow_soft_placement = True)
+        self._sess = tf.Session(*args, config = config, **kwargs)
         self._sess.run(tf.global_variables_initializer())
         self._worker.initialize(self._sess)
 
